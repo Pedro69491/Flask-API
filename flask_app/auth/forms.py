@@ -12,7 +12,7 @@ class Registration(FlaskForm):
     email = StringField(
         'email',
         validators=[
-            Email(message='Enter a vaild email.'),
+            Email(message='Enter a valid email.'),
             DataRequired()
             ]
     )

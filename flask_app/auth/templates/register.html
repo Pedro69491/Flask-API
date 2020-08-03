@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register</title>
+    </head>
+    <body>
+        <div>
+            <h3>Register</h3>
+        </div>
+        <div class="box">
+            <form action="/sign_up" method="POST"> <!-- used to collect user input to be sent to the server --> <!-- action - where to send the form-data when the form is submitted-->
+                {{ form.hidden_tag() }}
+                <fieldset class="username">
+                    {{ form.username.label }} <!-- first paremeter of StringField() -->
+                    {{ form.username(placeholder='John Smith') }}   <!-- Sets the field where the user inputs info which can be validated or not depending of the validators-->
+                </fieldset>
+                <fieldset class="email">
+                    {{ form.email.label }}
+                    {{ form.email(placeholder="youremail@example.com") }}
+                </fieldset>
+                <fieldset class="password">
+                    {{ form.password.label }}
+                    {{ form.password }}
+                </fieldset>
+                <div class="submit">
+                    {{ form.submit }}
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+    </head>
+    <body>
+        <div>
+            <h3>Login</h3>
+        </div>
+        <div class="box">
+            <form action="/login" method="POST">
+                {{ form.hidden_tag() }}
+                <fieldset class="username">
+                    {{ form.username.label }}  
+                    {{ form.username(placeholder='John Smith')}}
+                </fieldset>
+                <fieldset class="password">
+                    {{ form.password.label }}
+                    {{ form.password }}
+                </fieldset>
+                <div class="submit">
+                    {{ form.submit }}
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
