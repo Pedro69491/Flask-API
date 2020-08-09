@@ -22,8 +22,9 @@ def home():
 def create_user():
     form = Registration()  # flask-wtf doesn't need to receive request.form, it loads automatically.
     if form.validate_on_submit(): # then validate_on_submit() checks if it is a POST request and if it is valid
-        user = User.query.filter_by(username= form.username.data, email=form.email.data).first() # first user in the database with a specific email
-        if user is None:
+        user_email = User.query.filter_by(email=form.email.data).first() # first user in the database with a specific email
+        user_name  = User.query.filter_by(username=form.username.data).first()
+        if user_email is None and user_name is None:
             new_user = User(
                 username= form.username.data,
                 email= form.email.data,
@@ -33,8 +34,8 @@ def create_user():
             db.session.add(new_user)
             db.session.commit()
             return redirect(url_for('auth_bp.login'))
-        return render_template('register.html', msg='User already exists', form=form)
-    return render_template('register.html', form=form) # we pass in form, this way within template we have access to form content
+        flash('User already exists')
+    return render_template('register.html', form=form, title='Sign up') # we pass in form, this way within template we have access to form content
 
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
@@ -46,8 +47,8 @@ def login():
         if user and user.check_password(form.password.data): 
             login_user(user)
             return redirect(url_for('auth_bp.index'))
-        return render_template('login.html', msg='Wrong user or password', form=form)
-    return render_template('login.html', form=form)
+        flash('Wrong user or password')
+    return render_template('login.html', form=form, title='Login')
 
 @auth_bp.route('/index')
 def index():
