@@ -10,5 +10,6 @@ Flask libraries: flaskWTF, flask_migrate, flask_app
 
 Encription: werkzeug.security
 
+Run the program using: run.py
 
 
